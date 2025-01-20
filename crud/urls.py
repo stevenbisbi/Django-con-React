@@ -4,7 +4,7 @@ from rest_framework.documentation import include_docs_urls
 from crud import views
 
 router = routers.DefaultRouter()
-router.register(r'research_groups', views.ResearchGroupViewSet, 'research_group')
+router.register(r'groups', views.ResearchGroupViewSet, 'group')
 router.register(r'authors', views.AuthorViewSet, 'author')
 router.register(r'article_types', views.ArticleTypeViewSet, 'article_type')
 router.register(r'articles', views.ArticleViewSet, 'article')

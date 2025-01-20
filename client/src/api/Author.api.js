@@ -8,8 +8,8 @@ export const getAllAuthors = () => authorApi.get("/");
 
 export const getAuthor = (id) => authorApi.get(`/${id}/`);
 
-export const createAuthor = (author) => authorApi.get("/", author);
+export const createAuthor = (author) => authorApi.post("/", author);
 
-export const deleteAuthor = (id) => authorApi.get(`/${id}/`);
+export const deleteAuthor = (id) => authorApi.delete(`/${id}/`);
 
-export const aupdateAuthor = (id, author) => authorApi.get(`/${id}/`, author);
+export const updateAuthor = (id, author) => authorApi.put(`/${id}/`, author);

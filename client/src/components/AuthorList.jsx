@@ -13,10 +13,10 @@ export function AuthorList() {
     loadAuthors();
   }, []);
   return (
-    <div>
+    <main className="container">
       {authors.map((author) => (
         <AuthorCard key={author.id} author={author} />
       ))}
-    </div>
+    </main>
   );
 }
