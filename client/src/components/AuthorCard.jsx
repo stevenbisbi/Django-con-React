@@ -6,7 +6,7 @@ export function AuthorCard({ author }) {
   const navigate = useNavigate();
 
   return (
-    <section className="card px-5 py-5">
+    <div className="card px-5 py-5 my-1">
       <h2>{author.name}</h2>
       <p>{author.last_name}</p>
       <p>{author.email}</p>
@@ -37,6 +37,6 @@ export function AuthorCard({ author }) {
           Eliminar
         </button>
       </div>
-    </section>
+    </div>
   );
 }

@@ -13,7 +13,7 @@ export function AuthorList() {
     loadAuthors();
   }, []);
   return (
-    <main className="container">
+    <main className="container d-flex flex-wrap gap-3">
       {authors.map((author) => (
         <AuthorCard key={author.id} author={author} />
       ))}

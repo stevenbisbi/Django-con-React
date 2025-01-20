@@ -1,0 +1,60 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #1c5ea3;
+}
+main {
+  flex: 1;
+}
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+a {
+  color: inherit; /* Hereda el color del elemento padre o usa el color que elijas */
+  text-decoration: none; /* Elimina el subrayado */
+  color: #a47f12;
+}
+
+/* Cambiar el color de la navbar cuando se pasa el cursor sobre ella */
+
+.card {
+  background-color: #f8f8f8 !important;
+  color: #a47f12;
+}
+.nav-link:hover {
+  color: #f9b620 !important;
+}
+.navbar-brand:hover {
+  color: #f9b620 !important;
+}
+
+h1,
+h2,
+h3 {
+  color: #f9b620 !important;
+}
+h6 {
+  color: #a47f12 !important;
+}
+
+.custom-color {
+  background-color: #f8f8f8 !important;
+}
+
+.p-color {
+  color: #f8f8f8 !important;
+}
+.a-color {
+  color: blue !important;
+}
+.p-color2 {
+  color: #f9b620;
+}
+.decoration-no {
+  text-decoration: none;
+}

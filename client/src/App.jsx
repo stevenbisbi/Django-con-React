@@ -7,10 +7,12 @@ import { GroupFormPage } from "./pages/Forms/GroupFormPage";
 import { AuthorPage } from "./pages/AuthorPage";
 import { AuthorFormPage } from "./pages/Forms/AuthorFormPage";
 import { Toaster } from "react-hot-toast";
+import { NavBar } from "./components/NavBar";
 
 function App() {
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/authors" element={<AuthorPage />} />
