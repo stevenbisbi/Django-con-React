@@ -1,14 +1,10 @@
-import { set, useForm } from "react-hook-form";
-import {
-  createAuthor,
-  deleteAuthor,
-  updateAuthor,
-  getAuthor,
-} from "../../api/Author.api";
+import { useForm } from "react-hook-form";
+import { createAuthor, updateAuthor, getAuthor } from "../../api/Author.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { getAllGroups } from "../../api/Group.api";
+
 export function AuthorFormPage() {
   const {
     register,
@@ -42,16 +38,14 @@ export function AuthorFormPage() {
         setValue("group_name", res.data.group_name);
       }
     }
-    loadAuthor();
-  }, []);
-
-  useEffect(() => {
     async function loadGroups() {
       const res = await getAllGroups();
       setGroups(res.data);
     }
+    loadAuthor();
     loadGroups();
   }, []);
+
   return (
     <div>
       <form onSubmit={onSubmit}>

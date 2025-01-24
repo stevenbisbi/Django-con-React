@@ -1,15 +1,15 @@
 import axios from "axios";
 
-const authorApi = axios.create({
-  baseURL: "http://localhost:8000/crud/api/v1/authors/",
+const tipoApi = axios.create({
+  baseURL: "http://localhost:8000/crud/api/v1/article_types/",
 });
 
-export const getAllAuthors = () => authorApi.get("/");
+export const getAllTipos = () => tipoApi.get("/");
 
-export const getAuthor = (id) => authorApi.get(`/${id}/`);
+export const getTipo = (id) => tipoApi.get(`/${id}/`);
 
-export const createAuthor = (author) => authorApi.get("/", author);
+export const createTipo = (tipo) => tipoApi.get("/", tipo);
 
-export const deleteAuthor = (id) => authorApi.get(`/${id}/`);
+export const deleteTipo = (id) => tipoApi.get(`/${id}/`);
 
-export const updateAuthor = (id, author) => authorApi.get(`/${id}/`, author);
+export const updateTipo = (id, tipo) => tipoApi.get(`/${id}/`, tipo);

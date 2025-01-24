@@ -17,7 +17,12 @@ class ResearchGroup(models.Model):
     class Meta:
         verbose_name = 'Grupo de Investigación'
         verbose_name_plural = 'Grupos de Investigación'
-        
+    
+    def save(self, *args, **kwargs):
+        if self.name:
+            self.name = self.name.name()  # Esto pone en mayúscula la primera letra de cada palabra
+        super().save(*args, **kwargs)
+       
     def __str__(self) -> str:
         return self.name
     
@@ -31,7 +36,17 @@ class Author(models.Model):
     class Meta:
         verbose_name = 'Autor'
         verbose_name_plural = 'Autores'
-        
+    
+    def save(self, *args, **kwargs):
+        # Capitalizar la primera letra de cada palabra en el título
+        if self.name:
+            self.name = self.name.name()  # Esto pone en mayúscula la primera letra de cada palabra
+        if self.last_name:
+            self.last_name = self.last_name.last_name()  # Esto pone en mayúscula la primera letra de cada palabra
+        if self.nationality:
+            self.nationality = self.nationality.nationality()  # Esto pone en mayúscula la primera letra de cada palabra
+        super().save(*args, **kwargs)
+      
     def __str__(self) -> str:
         return f'{self.name} {self.last_name}'
     
@@ -66,7 +81,13 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Artículo'
         verbose_name_plural = 'Artículos'
-        
+    
+    def save(self, *args, **kwargs):
+        # Capitalizar la primera letra de cada palabra en el título
+        if self.title:
+            self.title = self.title.title()  # Esto pone en mayúscula la primera letra de cada palabra
+        super().save(*args, **kwargs)
+    
     def __str__(self) -> str:
         return self.title
     
@@ -96,7 +117,16 @@ class CongressProceedings(models.Model):
     class Meta:
         verbose_name = 'Acta de Congreso'
         verbose_name_plural = 'Actas de Congreso'
-        
+    
+    def save(self, *args, **kwargs):   
+        if self.city:
+            self.city = self.city.city()  # Esto pone en mayúscula la primera letra de cada palabra
+        if self.country:
+            self.country = self.country.country()
+        if self.frecuency:
+            self.frecuency = self.frecuency.frecuency()
+        super().save(*args, **kwargs)
+    
     def __str__(self) -> str:
         return self.number 
     
@@ -104,16 +134,24 @@ class ScientificJournal(models.Model):
     id_article = models.ForeignKey(Article, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     editor = models.CharField(max_length=100)
-    start_year = models.DateField(max_length=50)
+    start_year = models.IntegerField()
     periodicity = models.CharField(max_length=50)
-    topic = models.DateField(max_length=50)
+    topic = models.CharField(max_length=50)
     edicion_number = models.IntegerField()
     pages = models.IntegerField()
-    pusblication_year = models.DateField()
+    pusblication_year = models.IntegerField()
     
     class Meta:
         verbose_name = 'Revista Científica'
         verbose_name_plural = 'Revistas Científicas'
+    
+    def save(self, *args, **kwargs):   
+        if self.name:
+            self.name = self.name.name()
+        if self.editor:
+            self.editor = self.editor.editor()
+        if self.periodicity:
+            self.periodicity = self.periodicity.periodicity()
         
     def __str__(self) -> str:
         return f"Revista {self.name} - {self.edicion_number}"
