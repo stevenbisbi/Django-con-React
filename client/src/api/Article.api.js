@@ -8,9 +8,9 @@ export const getAllArticles = () => articleApi.get("/");
 
 export const getArticle = (id) => articleApi.get(`/${id}/`);
 
-export const createArticle = (article) => articleApi.get("/", article);
+export const createArticle = (article) => articleApi.post("/", article);
 
-export const deleteArticle = (id) => articleApi.get(`/${id}/`);
+export const deleteArticle = (id) => articleApi.delete(`/${id}/`);
 
 export const updateArticle = (id, article) =>
-  articleApi.get(`/${id}/`, article);
+  articleApi.put(`/${id}/`, article);

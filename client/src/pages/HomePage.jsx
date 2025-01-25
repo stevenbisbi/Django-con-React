@@ -10,7 +10,6 @@ export function Home() {
     async function loadGroups() {
       const res = await getAllGroups();
       setGroups(res.data);
-      console.log(res.data);
     }
     loadGroups();
   }, []);

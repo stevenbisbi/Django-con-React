@@ -8,8 +8,8 @@ export const getAllTipos = () => tipoApi.get("/");
 
 export const getTipo = (id) => tipoApi.get(`/${id}/`);
 
-export const createTipo = (tipo) => tipoApi.get("/", tipo);
+export const createTipo = (tipo) => tipoApi.post("/", tipo);
 
-export const deleteTipo = (id) => tipoApi.get(`/${id}/`);
+export const deleteTipo = (id) => tipoApi.delete(`/${id}/`);
 
-export const updateTipo = (id, tipo) => tipoApi.get(`/${id}/`, tipo);
+export const updateTipo = (id, tipo) => tipoApi.put(`/${id}/`, tipo);

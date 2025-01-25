@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const scientificJournalApi = axios.create({
-  baseURL: "http://localhost:8000/crud/api/v1/scientificJournals/",
+  baseURL: "http://localhost:8000/crud/api/v1/scientific_journals/",
 });
 
 export const getAllScientificJournals = () => scientificJournalApi.get("/");

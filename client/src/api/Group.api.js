@@ -8,8 +8,8 @@ export const getAllGroups = () => groupApi.get("/");
 
 export const getGroup = (id) => groupApi.get(`/${id}/`);
 
-export const createGroup = (group) => groupApi.get("/", group);
+export const createGroup = (group) => groupApi.post("/", group);
 
-export const deleteGroup = (id) => groupApi.get(`/${id}/`);
+export const deleteGroup = (id) => groupApi.delete(`/${id}/`);
 
-export const updateGroup = (id, group) => groupApi.get(`/${id}/`, group);
+export const updateGroup = (id, group) => groupApi.put(`/${id}/`, group);

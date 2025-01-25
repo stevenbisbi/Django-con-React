@@ -92,10 +92,10 @@ class Article(models.Model):
         return self.title
     
 class TechnicalReport(models.Model):
-    id_articulo = models.ForeignKey(Article, on_delete=models.CASCADE)
     number = models.CharField(max_length=10)
     publishing_center = models.CharField(max_length=100)
     date = models.DateField()
+    id_article = models.ForeignKey(Article, on_delete=models.CASCADE)
     
     class Meta:
         verbose_name = 'Informe Técnico'
@@ -105,7 +105,6 @@ class TechnicalReport(models.Model):
         return self.number
     
 class CongressProceedings(models.Model):
-    id_article = models.ForeignKey(Article, on_delete=models.CASCADE)
     edition =models.IntegerField()
     city = models.CharField(max_length=100)
     tipo = models.CharField(max_length=100)
@@ -113,6 +112,7 @@ class CongressProceedings(models.Model):
     year_firstedition = models.IntegerField()
     frecuency = models.CharField(max_length=100)
     date = models.DateField()
+    id_article = models.ForeignKey(Article, on_delete=models.CASCADE)
     
     class Meta:
         verbose_name = 'Acta de Congreso'
@@ -131,7 +131,6 @@ class CongressProceedings(models.Model):
         return self.number 
     
 class ScientificJournal(models.Model):
-    id_article = models.ForeignKey(Article, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     editor = models.CharField(max_length=100)
     start_year = models.IntegerField()
@@ -140,6 +139,7 @@ class ScientificJournal(models.Model):
     edicion_number = models.IntegerField()
     pages = models.IntegerField()
     pusblication_year = models.IntegerField()
+    id_article = models.ForeignKey(Article, on_delete=models.CASCADE)
     
     class Meta:
         verbose_name = 'Revista Científica'

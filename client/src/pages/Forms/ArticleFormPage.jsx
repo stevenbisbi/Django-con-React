@@ -3,13 +3,15 @@ import { createArticle, updateArticle } from "../../api/Article.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { getArticle } from "../../api/Article.api";
+import { getAllArticles } from "../../api/Article.api";
 import { getAllTipos } from "../../api/Article_Type.api";
 import { getAllAuthors } from "../../api/Author.api";
 import { CongressProceedingsForm } from "./CongressProceedingsForm";
 import { ScientificJournalForm } from "./ScientificJournalForm";
 import { TechnicalReportForm } from "./TechnicalReportForm";
 import { createTechnical_report } from "../../api/TechnicalReport.api";
+import { createScientificJournal } from "../../api/ScientificJournal.api";
+import { createCongressProceeding } from "../../api/Congressprocedings.api";
 
 export function ArticleFormPage() {
   const {
@@ -30,19 +32,39 @@ export function ArticleFormPage() {
       toast.success("Articulo actualizado");
     } else {
       await createArticle(data);
-      const articleId = data.id;
-      if (data) {
-        console.log(data);
-      }
-      data.id_article = articleId;
+
+      // Obtener todos los artículos y el último artículo creado
+      const res = await getAllArticles();
+      const lastArticle = res.data[res.data.length - 1];
+
+      // Agregar el `id_article` al dato que se va a enviar
+      data.id_article = lastArticle.id;
+      console.log(data); // Asegúrate de usar el `id`
+
       if (selectedTipo === "1") {
         try {
           const response = await createTechnical_report(data);
+          console.log(response);
         } catch (error) {
-          console.log(error.response.data); // Verifica qué campos o datos están fallando
+          console.log(error.response.data);
+        }
+      } else if (selectedTipo === "2") {
+        try {
+          const response = await createCongressProceeding(data);
+          console.log(response);
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      } else {
+        try {
+          const response = await createScientificJournal(data);
+          console.log(response);
+        } catch (error) {
+          console.log(error.response.data);
         }
       }
     }
+    navigate("/");
   });
 
   useEffect(() => {
