@@ -9,6 +9,7 @@ import { getAllAuthors } from "../../api/Author.api";
 import { CongressProceedingsForm } from "./CongressProceedingsForm";
 import { ScientificJournalForm } from "./ScientificJournalForm";
 import { TechnicalReportForm } from "./TechnicalReportForm";
+import { createTechnical_report } from "../../api/TechnicalReport.api";
 
 export function ArticleFormPage() {
   const {
@@ -26,12 +27,22 @@ export function ArticleFormPage() {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updateArticle(params.id, data);
-      toast.success("Autor actualizado");
+      toast.success("Articulo actualizado");
     } else {
       await createArticle(data);
-      toast.success("Autor creado");
+      const articleId = data.id;
+      if (data) {
+        console.log(data);
+      }
+      data.id_article = articleId;
+      if (selectedTipo === "1") {
+        try {
+          const response = await createTechnical_report(data);
+        } catch (error) {
+          console.log(error.response.data); // Verifica qué campos o datos están fallando
+        }
+      }
     }
-    navigate("/articles");
   });
 
   useEffect(() => {
