@@ -50,35 +50,44 @@ export function AuthorFormPage() {
     <div>
       <form onSubmit={onSubmit}>
         <input
+          className="form-control mb-3"
           type="text"
           placeholder="Nombre"
           {...register("name", { required: true })}
         />
         {errors.name && <span>Este campo es requerido</span>}
         <input
+          className="form-control mb-3"
           type="text"
           placeholder="Apellido"
           {...register("last_name", { required: true })}
         />
         <input
+          className="form-control mb-3"
           type="email"
           placeholder="Email"
           {...register("email", { required: true })}
         />
         <input
+          className="form-control mb-3"
           type="text"
           placeholder="Nacionalidad"
           {...register("nationality", { required: true })}
         />
-        <select {...register("id_group", { required: true })}>
+        <select
+          {...register("id_group", { required: true })}
+          className="form-control mb-3"
+        >
           {groups.map((group) => (
             <option key={group.id} value={group.id}>
-              {group.name}
+              {group.name + " - " + group.line}
             </option>
           ))}
         </select>
         {errors.id_group && <span>Este campo es requerido</span>}
-        <button type="submit">Guardar</button>
+        <button type="submit" className="btn btn-primary">
+          Guardar
+        </button>
       </form>
     </div>
   );

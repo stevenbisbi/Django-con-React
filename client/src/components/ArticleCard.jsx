@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function ArticleCard({ article, onDelete }) {
   const navigate = useNavigate();
@@ -11,11 +11,14 @@ export function ArticleCard({ article, onDelete }) {
         <span className="fw-bold">Fecha de publicación: </span>
         {article.publication_date}
       </p>
-      <p>
+      <Link
+        to={`authors/${article.id_author}`}
+        className="text-decoration-none text-reset"
+      >
         {" "}
-        <span className="fw-bold">Autor: </span>
+        <span className="fw-bold ">Autor: </span>
         {article.author_name}
-      </p>
+      </Link>
       <p>
         <span className="fw-bold">Tipo de articulo: </span>
         {article.tipo_name}

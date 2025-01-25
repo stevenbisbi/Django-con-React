@@ -7,7 +7,7 @@ class ResearchGroupSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class AuthorSerializer(serializers.ModelSerializer):
-    group_name = serializers.CharField(source='id_group.name', read_only=True)
+    group_name = serializers.CharField(source='id_group.name' + " - " + 'id_group.line' , read_only=True)
     class Meta:
         model = Author
         fields = '__all__'

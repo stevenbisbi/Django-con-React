@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ArticleFormPage } from "../pages/Forms/ArticleFormPage";
 export function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark w-100 mb-3">
@@ -21,13 +20,13 @@ export function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/groups">
-                Crear Grupos
+              <Link className="nav-link active" to="/articles-create">
+                Crear Articulos
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/logout">
-                Cerrar Sesion{" "}
+              <Link className="nav-link active" to="/groups">
+                Crear Grupos
               </Link>
             </li>
           </ul>

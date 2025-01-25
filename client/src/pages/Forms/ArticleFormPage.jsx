@@ -6,6 +6,9 @@ import { toast } from "react-hot-toast";
 import { getArticle } from "../../api/Article.api";
 import { getAllTipos } from "../../api/Article_Type.api";
 import { getAllAuthors } from "../../api/Author.api";
+import { CongressProceedingsForm } from "./CongressProceedingsForm";
+import { ScientificJournalForm } from "./ScientificJournalForm";
+import { TechnicalReportForm } from "./TechnicalReportForm";
 
 export function ArticleFormPage() {
   const {
@@ -18,7 +21,7 @@ export function ArticleFormPage() {
   const params = useParams();
   const [authors, setAuthors] = useState([]); // Estado para autores
   const [tipos, setTipos] = useState([]); // Estado para tipos
-  const [article, setArticle] = useState({}); // Estado para artículo
+  const [selectedTipo, setSelectedTipo] = useState(null);
 
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
@@ -39,6 +42,7 @@ export function ArticleFormPage() {
         setValue("publication_date", res.data.publication_date);
         setValue("id_author", res.data.id_author);
         setValue("id_tipo", res.data.id_tipo);
+        setSelectedTipo(res.data.id_tipo);
       }
     }
     async function loadAuthors() {
@@ -55,6 +59,10 @@ export function ArticleFormPage() {
     loadAuthors();
     loadTipos();
   }, []);
+
+  const handleTipoChange = (event) => {
+    setSelectedTipo(event.target.value); // Actualizar el estado con el valor seleccionado
+  };
 
   return (
     // Formulario para crear o editar un artículo
@@ -81,7 +89,11 @@ export function ArticleFormPage() {
           <select
             {...register("id_author", { required: true })}
             className="form-control"
+            defaultValue=""
           >
+            <option value="" disabled>
+              Seleccione el autor
+            </option>
             {authors.map((author) => (
               <option key={author.id} value={author.id}>
                 {author.name}
@@ -94,7 +106,12 @@ export function ArticleFormPage() {
           <select
             {...register("id_tipo", { required: true })}
             className="form-control"
+            onChange={handleTipoChange}
+            defaultValue=""
           >
+            <option value="" disabled>
+              Seleccione el tipo de articulo
+            </option>
             {tipos.map((tipo) => (
               <option key={tipo.id} value={tipo.id}>
                 {tipo.tipo}
@@ -104,7 +121,18 @@ export function ArticleFormPage() {
           {errors.id_tipo && <span>Este campo es requerido</span>}
         </div>
 
-        <button type="submit">Guardar</button>
+        {selectedTipo === "1" && (
+          <TechnicalReportForm register={register} errors={errors} />
+        )}
+        {selectedTipo === "2" && (
+          <CongressProceedingsForm register={register} errors={errors} />
+        )}
+        {selectedTipo === "3" && (
+          <ScientificJournalForm register={register} errors={errors} />
+        )}
+        <button type="submit" className="btn btn-primary">
+          Guardar
+        </button>
       </form>
     </div>
   );

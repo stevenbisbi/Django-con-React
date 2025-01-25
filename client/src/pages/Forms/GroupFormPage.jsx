@@ -59,7 +59,9 @@ export function GroupFormPage() {
           ))}
         </select>
         {errors.id_group && <span>Este campo es requerido</span>}
-        <button type="submit">Guardar</button>
+        <button type="submit" className="btn btn-primary">
+          Guardar
+        </button>
       </form>
     </div>
   );

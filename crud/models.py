@@ -24,7 +24,7 @@ class ResearchGroup(models.Model):
         super().save(*args, **kwargs)
        
     def __str__(self) -> str:
-        return self.name
+        return self.name + " - " + self.line
     
 class Author(models.Model):
     name = models.CharField(max_length=100)
