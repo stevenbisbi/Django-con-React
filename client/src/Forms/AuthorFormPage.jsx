@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { createAuthor, updateAuthor, getAuthor } from "../../api/Author.api";
+import { createAuthor, updateAuthor, getAuthor } from "../api/Author.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { getAllGroups } from "../../api/Group.api";
+import { getAllGroups } from "../api/Group.api";
 
 export function AuthorFormPage() {
   const {

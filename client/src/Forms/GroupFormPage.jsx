@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { createGroup, updateGroup, getGroup } from "../../api/Group.api";
+import { createGroup, updateGroup, getGroup } from "../api/Group.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";

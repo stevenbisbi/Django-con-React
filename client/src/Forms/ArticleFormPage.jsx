@@ -1,17 +1,17 @@
 import { useForm } from "react-hook-form";
-import { createArticle, updateArticle } from "../../api/Article.api";
+import { createArticle, updateArticle } from "../api/Article.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { getAllArticles } from "../../api/Article.api";
-import { getAllTipos } from "../../api/Article_Type.api";
-import { getAllAuthors } from "../../api/Author.api";
+import { getAllArticles } from "../api/Article.api";
+import { getAllTipos } from "../api/Article_Type.api";
+import { getAllAuthors } from "../api/Author.api";
 import { CongressProceedingsForm } from "./CongressProceedingsForm";
 import { ScientificJournalForm } from "./ScientificJournalForm";
 import { TechnicalReportForm } from "./TechnicalReportForm";
-import { createTechnical_report } from "../../api/TechnicalReport.api";
-import { createScientificJournal } from "../../api/ScientificJournal.api";
-import { createCongress_proceeding } from "../../api/Congressprocedings.api";
+import { createTechnical_report } from "../api/TechnicalReport.api";
+import { createScientificJournal } from "../api/ScientificJournal.api";
+import { createCongress_proceeding } from "../api/Congressprocedings.api";
 
 export function ArticleFormPage() {
   const {
