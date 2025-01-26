@@ -75,7 +75,7 @@ export function ScientificJournalForm({ register, errors }) {
         <input
           type="number"
           placeholder="Año de Publicación"
-          {...register("pusblication_year", { required: true })}
+          {...register("publication_year", { required: true })}
           className="form-control"
         />
         {errors.pusblication_year && <span>Este campo es requerido</span>}

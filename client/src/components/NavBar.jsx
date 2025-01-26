@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 export function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-dark navbar-dark w-100 mb-3">
+    <nav className="navbar navbar-expand-lg bg-dark navbar-dark mb-3 px-3">
       <div className="container-fluid">
         <h3 className="navbar-brand" to="#">
           Gestor de investigacion
         </h3>
-
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -25,7 +32,7 @@ export function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/groups">
+              <Link className="nav-link active" to="/groups-create">
                 Crear Grupos
               </Link>
             </li>

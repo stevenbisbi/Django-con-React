@@ -41,8 +41,6 @@ class CongressProceedingsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ScientificJournalSerializer(serializers.ModelSerializer):
-    date= serializers.DateField(format='%d/%m/%Y')
-    
     class Meta:
         model = ScientificJournal
         fields = '__all__'

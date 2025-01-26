@@ -16,7 +16,7 @@ export function Home() {
 
   return (
     <main className="container my-4">
-      <div className="d-flex">
+      <div className="d-flex collapse">
         {/* Barra lateral de grupos de investigación */}
         <div className="col-2">
           <Aside groups={groups} />

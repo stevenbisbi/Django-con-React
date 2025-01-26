@@ -1,19 +1,19 @@
 import axios from "axios";
 
-const congressProceedingApi = axios.create({
+const congress_proceedingApi = axios.create({
   baseURL: "http://localhost:8000/crud/api/v1/congress_proceedings/",
 });
 
-export const getAllCongressProceedings = () => congressProceedingApi.get("/");
+export const getAllCongress_proceedings = () => congress_proceedingApi.get("/");
 
-export const getCongressProceeding = (id) =>
-  congressProceedingApi.get(`/${id}/`);
+export const getCongress_proceeding = (id) =>
+  congress_proceedingApi.get(`/${id}/`);
 
-export const createCongressProceeding = (congressProceeding) =>
-  congressProceedingApi.post("/", congressProceeding);
+export const createCongress_proceeding = (congress_proceeding) =>
+  congress_proceedingApi.post("/", congress_proceeding);
 
-export const deleteCongressProceeding = (id) =>
-  congressProceedingApi.delete(`/${id}/`);
+export const deleteCongress_proceeding = (id) =>
+  congress_proceedingApi.delete(`/${id}/`);
 
-export const updateCongressProceeding = (id, congressProceeding) =>
-  congressProceedingApi.put(`/${id}/`, congressProceeding);
+export const updateCongress_proceeding = (id, congress_proceeding) =>
+  congress_proceedingApi.put(`/${id}/`, congress_proceeding);

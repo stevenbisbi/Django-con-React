@@ -11,7 +11,7 @@ import { ScientificJournalForm } from "./ScientificJournalForm";
 import { TechnicalReportForm } from "./TechnicalReportForm";
 import { createTechnical_report } from "../../api/TechnicalReport.api";
 import { createScientificJournal } from "../../api/ScientificJournal.api";
-import { createCongressProceeding } from "../../api/Congressprocedings.api";
+import { createCongress_proceeding } from "../../api/Congressprocedings.api";
 
 export function ArticleFormPage() {
   const {
@@ -50,12 +50,10 @@ export function ArticleFormPage() {
         }
       } else if (selectedTipo === "2") {
         try {
-          const response = await createCongressProceeding(data);
-          console.log(response);
-        } catch (error) {
-          console.log(error.response.data);
-        }
-      } else {
+          const response = await createCongress_proceeding(data);
+          console.log("acta creada");
+        } catch (error) {}
+      } else if (selectedTipo === "3") {
         try {
           const response = await createScientificJournal(data);
           console.log(response);
@@ -64,7 +62,7 @@ export function ArticleFormPage() {
         }
       }
     }
-    navigate("/");
+    /* navigate("/"); */
   });
 
   useEffect(() => {
@@ -99,46 +97,47 @@ export function ArticleFormPage() {
 
   return (
     // Formulario para crear o editar un artículo
-    <div className="d-flex justify-content-center">
-      <form onSubmit={onSubmit}>
-        <div className="mb-3">
-          <input
-            type="text"
-            placeholder="Titulo"
-            {...register("title", { required: true })}
-            className="form-control"
-          />
-          {errors.title && <span>Este campo es requerido</span>}
-        </div>
-        <div className="mb-3">
-          <input
-            type="date"
-            placeholder="Fecha de publicación"
-            {...register("publication_date", { required: true })}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <select
-            {...register("id_author", { required: true })}
-            className="form-control"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Seleccione el autor
-            </option>
-            {authors.map((author) => (
-              <option key={author.id} value={author.id}>
-                {author.name}
+    <div className="container">
+      <div className="cold-mb-4 offset-md-4">
+        <form onSubmit={onSubmit} className="card card-body mt-5">
+          <h2 className="text-center mb-4">Articulo</h2>
+          <div className="mb-3">
+            <input
+              type="text"
+              placeholder="Titulo"
+              {...register("title", { required: true })}
+              className="form-control mb-3"
+            />
+            {errors.title && <span>Este campo es requerido</span>}
+          </div>
+          <div className="mb-3">
+            <input
+              type="date"
+              placeholder="Fecha de publicación"
+              {...register("publication_date", { required: true })}
+              className="form-control mb-3"
+            />
+          </div>
+          <div className="mb-3">
+            <select
+              {...register("id_author", { required: true })}
+              className="form-control mb-3"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Seleccione el autor
               </option>
-            ))}
-          </select>
-        </div>
+              {authors.map((author) => (
+                <option key={author.id} value={author.id}>
+                  {author.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="mb-3">
           <select
             {...register("id_tipo", { required: true })}
-            className="form-control"
+            className="form-control mb-3"
             onChange={handleTipoChange}
             defaultValue=""
           >
@@ -152,21 +151,21 @@ export function ArticleFormPage() {
             ))}
           </select>
           {errors.id_tipo && <span>Este campo es requerido</span>}
-        </div>
 
-        {selectedTipo === "1" && (
-          <TechnicalReportForm register={register} errors={errors} />
-        )}
-        {selectedTipo === "2" && (
-          <CongressProceedingsForm register={register} errors={errors} />
-        )}
-        {selectedTipo === "3" && (
-          <ScientificJournalForm register={register} errors={errors} />
-        )}
-        <button type="submit" className="btn btn-primary">
-          Guardar
-        </button>
-      </form>
+          {selectedTipo === "1" && (
+            <TechnicalReportForm register={register} errors={errors} />
+          )}
+          {selectedTipo === "2" && (
+            <CongressProceedingsForm register={register} errors={errors} />
+          )}
+          {selectedTipo === "3" && (
+            <ScientificJournalForm register={register} errors={errors} />
+          )}
+          <button type="submit" className="btn btn-primary">
+            Guardar
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

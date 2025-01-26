@@ -47,48 +47,55 @@ export function AuthorFormPage() {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          className="form-control mb-3"
-          type="text"
-          placeholder="Nombre"
-          {...register("name", { required: true })}
-        />
-        {errors.name && <span>Este campo es requerido</span>}
-        <input
-          className="form-control mb-3"
-          type="text"
-          placeholder="Apellido"
-          {...register("last_name", { required: true })}
-        />
-        <input
-          className="form-control mb-3"
-          type="email"
-          placeholder="Email"
-          {...register("email", { required: true })}
-        />
-        <input
-          className="form-control mb-3"
-          type="text"
-          placeholder="Nacionalidad"
-          {...register("nationality", { required: true })}
-        />
-        <select
-          {...register("id_group", { required: true })}
-          className="form-control mb-3"
-        >
-          {groups.map((group) => (
-            <option key={group.id} value={group.id}>
-              {group.name + " - " + group.line}
+    <div className="container">
+      <div className="col-md-4 offset-md-4">
+        <form onSubmit={onSubmit} className="card card-body mt-5">
+          <h2 className="text-center mb-4">Autor</h2>
+          <input
+            className="form-control mb-3"
+            type="text"
+            placeholder="Nombre"
+            {...register("name", { required: true })}
+          />
+          {errors.name && <span>Este campo es requerido</span>}
+          <input
+            className="form-control mb-3"
+            type="text"
+            placeholder="Apellido"
+            {...register("last_name", { required: true })}
+          />
+          <input
+            className="form-control mb-3"
+            type="email"
+            placeholder="Email"
+            {...register("email", { required: true })}
+          />
+          <input
+            className="form-control mb-3"
+            type="text"
+            placeholder="Nacionalidad"
+            {...register("nationality", { required: true })}
+          />
+          <select
+            {...register("id_group", { required: true })}
+            className="form-control mb-3"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Seleccione el grupo de investigación
             </option>
-          ))}
-        </select>
-        {errors.id_group && <span>Este campo es requerido</span>}
-        <button type="submit" className="btn btn-primary">
-          Guardar
-        </button>
-      </form>
+            {groups.map((group) => (
+              <option key={group.id} value={group.id}>
+                {group.name + " - " + group.line}
+              </option>
+            ))}
+          </select>
+          {errors.id_group && <span>Este campo es requerido</span>}
+          <button type="submit" className="btn btn-primary">
+            Guardar
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

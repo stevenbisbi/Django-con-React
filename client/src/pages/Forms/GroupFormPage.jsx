@@ -18,10 +18,10 @@ export function GroupFormPage() {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updateGroup(params.id, data);
-      toast.success("Autor actualizado");
+      toast.success("Grupo de investigacion actualizado");
     } else {
       await createGroup(data);
-      toast.success("Autor creado");
+      toast.success("Grupo de investigacion creado");
     }
     navigate("/Groups");
   });
@@ -35,34 +35,45 @@ export function GroupFormPage() {
         setValue("categoria", res.data.categoria);
       }
     }
+    console.log(groups);
     loadGroup();
   }, []);
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="Nombre"
-          {...register("name", { required: true })}
-        />
-        {errors.name && <span>Este campo es requerido</span>}
-        <input
-          type="text"
-          placeholder="Linea"
-          {...register("line", { required: true })}
-        />
-        <select {...register("categoria", { required: true })}>
-          Categorias
-          {groups.map((group) => (
-            <option>{group.categoria}</option>
-          ))}
-        </select>
-        {errors.id_group && <span>Este campo es requerido</span>}
-        <button type="submit" className="btn btn-primary">
-          Guardar
-        </button>
-      </form>
+    <div className="container">
+      <div className="col-md-4 offset-md-4">
+        <form className="card card-body mt-5" onSubmit={onSubmit}>
+          <h2 className="text-center mb-4">Grupo de investigacion</h2>
+          <input
+            className="form-control mb-3"
+            type="text"
+            placeholder="Nombre"
+            {...register("name", { required: true })}
+          />
+          {errors.name && <span>Este campo es requerido</span>}
+          <input
+            className="form-control mb-3"
+            type="text"
+            placeholder="Linea"
+            {...register("line", { required: true })}
+          />
+          <select
+            className="form-control mb-3"
+            defaultValue=""
+            {...register("categoria", { required: true })}
+          >
+            <option value="">Selecione la categoria</option>
+            Categorias
+            {groups.map((group) => (
+              <option>{group.categoria}</option>
+            ))}
+          </select>
+          {errors.id_group && <span>Este campo es requerido</span>}
+          <button type="submit" className="btn btn-primary">
+            Guardar
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

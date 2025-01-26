@@ -120,15 +120,15 @@ class CongressProceedings(models.Model):
     
     def save(self, *args, **kwargs):   
         if self.city:
-            self.city = self.city.city()  # Esto pone en mayúscula la primera letra de cada palabra
+            self.city = self.city.title()  # Esto pone en mayúscula la primera letra de cada palabra
         if self.country:
-            self.country = self.country.country()
+            self.country = self.country.title()
         if self.frecuency:
-            self.frecuency = self.frecuency.frecuency()
+            self.frecuency = self.frecuency.title()
         super().save(*args, **kwargs)
     
     def __str__(self) -> str:
-        return self.number 
+        return self.city
     
 class ScientificJournal(models.Model):
     name = models.CharField(max_length=100)
@@ -138,7 +138,7 @@ class ScientificJournal(models.Model):
     topic = models.CharField(max_length=50)
     edicion_number = models.IntegerField()
     pages = models.IntegerField()
-    pusblication_year = models.IntegerField()
+    publication_year = models.IntegerField()
     id_article = models.ForeignKey(Article, on_delete=models.CASCADE)
     
     class Meta:
@@ -147,11 +147,11 @@ class ScientificJournal(models.Model):
     
     def save(self, *args, **kwargs):   
         if self.name:
-            self.name = self.name.name()
+            self.name = self.name.title()
         if self.editor:
-            self.editor = self.editor.editor()
+            self.editor = self.editor.title()
         if self.periodicity:
-            self.periodicity = self.periodicity.periodicity()
+            self.periodicity = self.periodicity.title()
         
     def __str__(self) -> str:
         return f"Revista {self.name} - {self.edicion_number}"
