@@ -152,6 +152,8 @@ class ScientificJournal(models.Model):
             self.editor = self.editor.title()
         if self.periodicity:
             self.periodicity = self.periodicity.title()
+        super().save(*args, **kwargs)
+    
         
     def __str__(self) -> str:
         return f"Revista {self.name} - {self.edicion_number}"

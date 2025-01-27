@@ -3,7 +3,7 @@ import { createArticle, updateArticle } from "../api/Article.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { getAllArticles } from "../api/Article.api";
+import { getAllArticles, getArticle } from "../api/Article.api";
 import { getAllTipos } from "../api/Article_Type.api";
 import { getAllAuthors } from "../api/Author.api";
 import { CongressProceedingsForm } from "./CongressProceedingsForm";
@@ -69,8 +69,13 @@ export function ArticleFormPage() {
     async function loadArticle() {
       if (params.id) {
         const res = await getArticle(params.id);
+
+        // Transformar la fecha de dd/mm/yyyy a yyyy-mm-dd
+        const dateParts = res.data.publication_date.split("/"); // Divide "dd/mm/yyyy"
+        const transformedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Reorganiza a "yyyy-mm-dd"
+
         setValue("title", res.data.title);
-        setValue("publication_date", res.data.publication_date);
+        setValue("publication_date", transformedDate);
         setValue("id_author", res.data.id_author);
         setValue("id_tipo", res.data.id_tipo);
         setSelectedTipo(res.data.id_tipo);
